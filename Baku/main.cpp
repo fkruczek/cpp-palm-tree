@@ -2,37 +2,39 @@
 #include <ncurses/ncurses.h>
 using namespace std;
 int c;
-int x;
-int y;
+int x=10;
+int y=10;
 
 int main()
-
 {
-initscr();
-clear();
-move(y , x);
-printw("%d" , x);
-refresh();
-c = getch();
-while((c = getch()) != KEY_F(1))
-	{	switch(c)
-		{	case KEY_LEFT:
-				x++;
+    initscr();
+    while(c != 27)
+        {
+            c=getch();
+            switch(c)
+            {
+                case 119://w
+                    y--;
+                break;
+                case 97://a
+                    x--;
+                break;
+                case 115://s
+                    y++;
+                break;
+                case 100://d
+                    x++;
+                break;
+                default: break;
+            }
+              clear();
+              move(y,x);
+              refresh();
+              printw("BAKU");
+       }
 
-				break;
-			case KEY_RIGHT:
-				x--;
 
-				break;
-			case KEY_UP:
-				y++;
-
-				break;
-			case KEY_DOWN:
-				y--;
-
-				break;
-		}
-	}
-
+       getch();
+       endwin();
+       return 0;
 }

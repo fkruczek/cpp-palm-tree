@@ -2,14 +2,18 @@
 #include <ncurses/ncurses.h>
 using namespace std;
 int c;
-int x=10;
+int x=10; //start pos
 int y=10;
 
 int main()
 {
     initscr();
-    while(c != 27)
-        {
+    while(c != 27) //ESC = exit
+    {
+            clear();
+            move(y,x);
+            refresh();
+            printw("BAKU");
             c=getch();
             switch(c)
             {
@@ -27,14 +31,8 @@ int main()
                 break;
                 default: break;
             }
-              clear();
-              move(y,x);
-              refresh();
-              printw("BAKU");
-       }
-
-
-       getch();
-       endwin();
-       return 0;
+    }
+    getch();
+    endwin();
+    return 0;
 }
